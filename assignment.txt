@@ -1,0 +1,25 @@
+Zadání Bonusového úkolu:
+Implementujte CEC 2020 Testbed.
+K dispozici je verze v jazyce C a Matlab (nicméně definice funkcí atd je možné pře-kodovat kam chcete - případně z JAVA volat C atd...). : dispozici zde (pdf s definitions, dále kod v software.zip):
+
+https://github.com/P-N-Suganthan/2020-Bound-Constrained-Opt-Benchmark
+
+Někteří jej znáte již z pokusů z AAMAI - pozor na volání funkcí - autoři kodu se moc nepárali se změnami a s číslováním některých vybraných funkcí oproti předchozímu benchmarku, který obsahoval 30 funkcí.
+
+Tento obsahuje 10 funkcí. Je potřeba brát ohled na to, že většina funkcí je tzv. rotovaných a shift-nutých - tedy pozice globálního exrému je posunuta uměle "shiftem" např mimostřed atd. Dále se načítají rotační matice. Benchmark je designovaný pro 5, 10, 15, 20 D (mimo F6 a F7 - ty nejsou pro 5D).
+
+Benchmark spusťte v  nastaveni 10D a 20D (změna oproti AAMAI!) - celkový budget ohodnocení účelové funkce je dán v tabulce v kapitole 2.1.
+
+Povinné algoritmy - jDE a SOMA. Zde je i prostor pro vlastní invenci/testování - kdo chce může implementovat více sofistikované verze (SHADE, L-SHADE... a třeba SOMA T3A, ESP-SOMA...).
+
+V becnchmarku je uvedeno 30 opakování - dodržet.
+
+Výsledkem tedy bude report pro 2 algoritmy, 2 dimenzionaální nastavení a 10 funkcí (tedy ze 40 experimentů - každý samozřejmě 30x opakovaný). Jakou formu zvolíte, nechám již na Vás:
+- 20x průměrný graf konvergence srovnávající 2 algoritmy (tedy graf kde vykreslíte průměrný vývoj best - solution napříč FES/iteracemi - pozor ale - nemůžete vykreslit konfergenci jDE a SOMA dle iterací do jednoho grafu, je nutné na ose x mít FES - pro stanovený FES bude počet iterací jiný! jDE v jedné iteraci ohodnotí CF jen NP-krát (např 50x), SOMA dle vzorce v přednáškách (např 445x). Je nutné to přepočítat a dostat na stejnou úroveň (u DE získáte update best výsledku každých NP ohodnocení CF, u SOMY s větším krokem.
+- Tabulky se základníma statistikama pro dvojice algoritmů.
+- Tabulka kde budete pouze porovnávat zda algoritmus byl lepší (+), horší (-), nebo výsledky byly stejné (=) pomocí wilcoxonova párového testu.
+... 
+Pár detailů pro zopakování:
+- main.cpp obsahuje ukázku volání funkce. Funkce jsou definovány v CEC20_test_func.cpp
+- funkce jsou rotovány a shiftovány - načítají se posuny a rotace z adresáře input data. Cílem je zamezení cheatingu algoritmů - aby se nekontroloval první střed funkce a pak došlo k prohledávání. Tedy extrém funkce je pro každé spuštění náhodně posunut, funkce orotována.
+- rozsah je zde -100, +100.
